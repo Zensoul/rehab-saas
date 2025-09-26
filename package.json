@@ -1,0 +1,16 @@
+{
+  "name": "rehab-saas",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "ai/*",
+    "packages/*",
+    "infra/*"
+  ],
+  "scripts": {
+    "lint": "echo \"No root lint configured\"",
+    "test": "echo \"No root tests configured\""
+  }
+}

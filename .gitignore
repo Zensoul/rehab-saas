@@ -1,0 +1,27 @@
+# Node
+node_modules/
+.pnpm-store/
+.pnp/
+dist/
+.build/
+
+# Env
+.env.local
+.env.*.local
+
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+thumbs.db
