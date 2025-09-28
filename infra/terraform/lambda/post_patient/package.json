@@ -1,0 +1,9 @@
+{
+  "name": "post-patient-lambda",
+  "version": "1.0.0",
+  "description": "Test lambda to write intakes to DynamoDB",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.1352.0"
+  }
+}
