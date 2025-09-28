@@ -1,27 +1,38 @@
-# Node
+# Node / pnpm
 node_modules/
 .pnpm-store/
-.pnp/
+
+# Next.js / build
+.next/
+out/
 dist/
-.build/
-
-# Env
-.env.local
-.env.*.local
-
-# VSCode
-.vscode/*
-!.vscode/extensions.json
-
-# Terraform
-.terraform/
-terraform.tfstate
-terraform.tfstate.backup
-
-# Logs
-logs
-*.log
 
 # OS
 .DS_Store
-thumbs.db
+Thumbs.db
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials
+secrets.yml
+
+# Terraform (state should not be committed)
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Python / venv
+venv/
+__pycache__/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+docker-compose.override.yml
