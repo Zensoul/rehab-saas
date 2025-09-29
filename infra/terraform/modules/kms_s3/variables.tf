@@ -53,7 +53,7 @@ variable "tags" {
 variable "prevent_destroy" {
   type        = bool
   description = "If true, prevent the S3 bucket from being destroyed by Terraform"
-  default     = false
+  default     = true
 }
 
 

@@ -1,0 +1,9 @@
+{
+  "Sid": "AllowLambdaS3PutObject",
+  "Effect": "Allow",
+  "Principal": {
+    "AWS": "arn:aws:iam::095289934056:role/lambdaS3WriteRole"
+  },
+  "Action": "s3:PutObject",
+  "Resource": "arn:aws:s3:::rehab-dev-raw-566807/*"
+}

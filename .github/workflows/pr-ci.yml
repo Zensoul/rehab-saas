@@ -14,8 +14,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          cache: 'pnpm'
           node-version: '20'
+          cache: pnpm
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -24,18 +24,16 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Lint (repo-level)
-        run: |
-          # customize to run workspace linters
-          pnpm -w lint || true
+        run: pnpm -w lint
 
       - name: Run tests (repo-level)
-        run: |
-          pnpm -w test || true
+        run: pnpm -w test
 
       - name: Terraform fmt check (infra)
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: '1.5.8'
+
       - name: Terraform fmt
         working-directory: infra/terraform
-        run: terraform fmt -check || true
+        run: terraform fmt -check

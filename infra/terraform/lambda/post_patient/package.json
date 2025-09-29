@@ -1,9 +1,17 @@
 {
   "name": "post-patient-lambda",
   "version": "1.0.0",
-  "description": "Test lambda to write intakes to DynamoDB",
+  "description": "Lambda to write intakes to DynamoDB and raw S3",
   "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js --bundle --platform=node --target=node18 --outfile=dist/index.js",
+    "package": "npm run build && zip -j post_patient.zip dist/index.js node_modules/* || true"
+  },
   "dependencies": {
-    "aws-sdk": "^2.1352.0"
+    "aws-sdk": "^2.1352.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.0"
   }
 }

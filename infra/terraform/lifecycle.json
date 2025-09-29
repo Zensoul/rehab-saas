@@ -1,0 +1,12 @@
+{
+  "Rules": [
+    {
+      "ID": "intake-data-retention",
+      "Prefix": "dev/intakes/",
+      "Status": "Enabled",
+      "Expiration": {
+        "Days": 365
+      }
+    }
+  ]
+}

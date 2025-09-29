@@ -22,6 +22,7 @@ resource "aws_lambda_function" "post_patient" {
   }
 
   tags = merge(var.tags, { Project = "rehab-saas" })
+  depends_on = [module.lambda_exec_role, module.intakes_table, module.raw_bucket]
 }
 
 # Allow API Gateway to invoke the Lambda

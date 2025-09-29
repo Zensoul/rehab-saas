@@ -1,30 +1,24 @@
 name: Terraform Init (PR)
 
-# Run this on pull requests so PRs hit the backend checks
 on:
   pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
-  id-token: write # required for OIDC
+  id-token: write
   contents: read
 
 jobs:
   terraform-init:
-    name: Terraform init (backend check)
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Configure AWS credentials via OIDC by assuming an IAM role.
-      # The role ARN should be stored in repo secret: AWS_ROLE_TO_ASSUME
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: ap-south-1   # change to your region
+          aws-region: ap-south-1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -34,14 +28,12 @@ jobs:
       - name: Terraform init (backend only, no apply)
         working-directory: infra/terraform
         run: |
-          # Use repo variables or secrets for backend config values.
-          # TF_STATE_BUCKET should be set in repo variables (not required to be secret).
           terraform init -input=false \
             -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
             -backend-config="dynamodb_table=${{ vars.TF_LOCK_TABLE }}" \
             -backend-config="key=pr-${{ github.event.pull_request.number }}/terraform.tfstate" \
             -reconfigure
 
-      - name: Terraform fmt check (optional)
+      - name: Terraform fmt check
         working-directory: infra/terraform
         run: terraform fmt -check
